@@ -3,13 +3,13 @@
 #include<time.h>
 
 typedef struct aviao{
-    char[7] codAviao;
-    char tipo;
-    int qtdCombustivel;
+    char codAviao[7];
+    char tipo;          // P = pouso, D = decolagem
+    int qtdCombustivel; // entre 0-12, 0 = prioridade maxima de pouso
 } Aviao;
 
 typedef struct lista{
-    int qtdAvioes;
+    int qtdAvioes;      // entre 10 e 64, gerados aleatoriamente
     clock_t tempoInicio;
     struct lista* prox;
 } Lista;
@@ -24,3 +24,30 @@ typedef struct filaDecolagem{
     Lista *fim;
 } FilaDecolagem;
 
+int main(){
+
+    // FILE *fp;
+    // char nomeArquivo[] = "lista_voos.txt";
+
+    // fp = fopen(nomeArquivo, "r");
+    // if (fp == NULL) {
+    //     printf("Falha ao abrir o arquivo.\n");
+    //     exit(1);
+    // }
+
+    // while (!feof(fp)) {
+    //     //
+    // }
+
+    // fclose(fp);
+    // return 0;
+
+    int c;
+    FILE *file;
+    file = fopen("lista_voos.txt", "r");
+    if (file) {
+        while ((c = getc(file)) != EOF)
+            putchar(c);
+        fclose(file);
+    }
+}
