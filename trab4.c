@@ -62,15 +62,15 @@ int main()
     int combA[nAprox];
     int i;
     
-    for (i = 0; i < nAprox; i++){
-    	combA[i] = randomize(0, 12, 1);
-    }
+ //    for (i = 0; i < nAprox; i++){
+ //    	combA[i] = randomize(0, 12, 1);
+ //    }
 	
-	for (i = 0; i < nAprox; i++){
-		printf("combA[%d]: %d \n", i, combA[i]);
-    }
+	// for (i = 0; i < nAprox; i++){
+	// 	printf("combA[%d]: %d \n", i, combA[i]);
+ //    }
  	
-char codAvioes[64][7] = {"VG3001", "JJ4404", "LN7001", "TG1501", 
+	char codAvioes[64][7] = {"VG3001", "JJ4404", "LN7001", "TG1501", 
 							"GL7602", "TT1010", "AZ1009", "AZ1008", 
 							"AZ1010", "TG1506", "VG3002", "JJ4402", 
 							"GL7603", "RL7880", "AL0012", "TT4544", 
@@ -87,27 +87,47 @@ char codAvioes[64][7] = {"VG3001", "JJ4404", "LN7001", "TG1501",
 							"TT1020", "AZ1098", "BA2312", "VG3030", 
 							"BA2304", "KL5609", "KL5610", "KL5611"};
 
-    char* voosDecolagem = (char*)calloc(sizeof(char)*nDecolagens);
-    // char voosAprox[nAprox][7];
 
-    for (i = 0; i < 1; i++){
-		printf("%d \n", i);
-    	int temp = randomize(0, 64, 1);
-    	int isValid = 0;
-		strcpy(voosDecolagem[i], codAvioes[temp]); 
+	typedef struct no No;
+	struct No{
+		char nome;
+		No* prox;	
+	};		
 
-    	for(int j = 0; j < nDecolagens; j++){
-    		printf("%s\n", voosDecolagem[j]);
-	    	if(strcmp(voosDecolagem[j], codAvioes[temp]) == 0){ 
-				temp = randomize(0, 64, 1);	  
-				strcpy(voosDecolagem[j], codAvioes[temp]); 
-	    	}
-    	}
-    }
+	typedef struct head Head;
+	struct Head{
+		No* inicio;
+		No* fim;	
+	};		
 
-    for (i = 0; i < nDecolagens; i++){
-    	printf("decolagem[%d] %s\n", i+1, voosDecolagem[i]);
-    }
+	No* lista = NULL;
+
+	Head* head = (Head*)malloc(sizeof(Head));
+	Head->inicio = NULL;
+	Head->fim = NULL;
+
+	for (i = 0; i < nDecolagens; i++){
+		
+	}
+
+	 //  for (i = 0; i < 1; i++){
+		// printf("%d \n", i);
+	 //  	int temp = randomize(0, 64, 1);
+	 //  	int isValid = 0;
+		// strcpy(voosDecolagem[i], codAvioes[temp]); 
+
+	 //  	for(int j = 0; j < nDecolagens; j++){
+	 //  		printf("%s\n", voosDecolagem[j]);
+	 //    	if(strcmp(voosDecolagem[j], codAvioes[temp]) == 0){ 
+		// 		temp = randomize(0, 64, 1);	  
+		// 		strcpy(voosDecolagem[j], codAvioes[temp]); 
+	 //    	}
+	 //  	}
+	 //  }
+
+//   for (i = 0; i < nDecolagens; i++){
+//   	printf("decolagem[%d] %s\n", i+1, voosDecolagem[i]);
+//   }
 
     return 0;
 }
