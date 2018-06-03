@@ -7,6 +7,7 @@
 typedef struct no No;
 struct no{
   char* nome;
+  int comb;
   No* prox;
 };
 
@@ -74,13 +75,6 @@ int main()
     int combA[nAprox];
     int i;
 
- //    for (i = 0; i < nAprox; i++){
- //    	combA[i] = randomize(0, 12, 1);
- //    }
-
-	// for (i = 0; i < nAprox; i++){
-	// 	printf("combA[%d]: %d \n", i, combA[i]);
- //    }
 
 	char codAvioes[64][7] = {"VG3001", "JJ4404", "LN7001", "TG1501",
 							"GL7602", "TT1010", "AZ1009", "AZ1008",
@@ -104,19 +98,23 @@ int main()
 	head->inicio = NULL;
 	head->fim = NULL;
 
-	for (i = 0; i < nDecolagens; i++){
+	for (i = 0; i < nAprox; i++){
       No* aux = head->inicio;
-     int temp = randomize(0,63,1);
+     int nomeRandom = randomize(0,63,1);
+     int combRandom = randomize(0,12,1);
+
      char* name = (char*)malloc(sizeof(name));
-     strcpy(name,codAvioes[temp]);
+     strcpy(name,codAvioes[nomeRandom]);
      No* novo = (No*)malloc(sizeof(No));
      novo->nome = name;
+     novo->comb = combRandom;
      novo->prox = NULL;
 
      while(aux != NULL){
+        // para verificar se o nome é igual, não pode ter nome repetido
        if(strcmp(aux->nome,novo->nome) == 0){
-         int temp = randomize(0,63,1);
-         strcpy(name,codAvioes[temp]);
+         int nomeRandom = randomize(0,63,1);
+         strcpy(name,codAvioes[nomeRandom]);
          novo->nome = name;
          novo->prox = NULL;
        }
@@ -131,27 +129,9 @@ int main()
        head->fim = novo;
      }
 
-     printf("%s\n", head->fim->nome);;
+     // print nome e qtd combustivel
+     printf("%s %d\n", head->fim->nome, head->fim->comb);
 	}
-
-	 //  for (i = 0; i < 1; i++){
-		// printf("%d \n", i);
-	 //  	int temp = randomize(0, 64, 1);
-	 //  	int isValid = 0;
-		// strcpy(voosDecolagem[i], codAvioes[temp]);
-
-	 //  	for(int j = 0; j < nDecolagens; j++){
-	 //  		printf("%s\n", voosDecolagem[j]);
-	 //    	if(strcmp(voosDecolagem[j], codAvioes[temp]) == 0){
-		// 		temp = randomize(0, 64, 1);
-		// 		strcpy(voosDecolagem[j], codAvioes[temp]);
-	 //    	}
-	 //  	}
-	 //  }
-
-  // for (i = 0; i < nDecolagens; i++){
-  // 	printf("decolagem[%d] %s\n", i+1, voosDecolagem[i]);
-  // }
 
     return 0;
 }
