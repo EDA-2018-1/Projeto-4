@@ -31,7 +31,7 @@ int randomize(int lower, int upper, int count){
 int main()
 {
     srand(time(NULL));
-    time_t = now;
+    //time_t = now;
 
 	int nVoos;
 	int nAprox = randomize(10, 32, 1);
@@ -158,10 +158,11 @@ int main()
         }
     }
 
-    while(lista != NULL)
+    No* aux = lista;
+    while(aux != NULL)
     {
-        printf("Código voo: %s    Tipo: %c    Combustível: %d\n", lista->nome,lista->tipo,lista->comb);
-        lista = lista->prox;
+        printf("Código voo: %s    Tipo: %c    Combustível: %d\n", aux->nome,aux->tipo,aux->comb);
+        aux = aux->prox;
     }
 
         for (i = 0; i < nDecol; i++){
@@ -187,8 +188,12 @@ int main()
                     head->fim->nome, head->fim->tipo, head->fim->comb);
         }
 
-
-
+        head->fim->prox = lista;
+        No* aux2 = lista;
+        while(aux2->prox != NULL){
+            aux2 = aux2->prox;
+        }
+        head->fim = aux2;
 
 
     return 0;
